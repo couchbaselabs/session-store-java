@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Java Session Store</a>
+</nav>
+
+<main role="main" class="container">
+
+    <br/>
+    <br/>
+    <h1>10 Most Recent Shopping Carts in Session Storage:</h1><br>
+    <a href="/"><-- Back to main page</a><br><br>
+
+    <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Session Store ID</th>
+            <th>Date Created</th>
+            <th># Items</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ses : ${sessions}">
+            <td th:text="${ses.documentId}"></td>
+            <td th:text="${ses.createdDate}"></td>
+            <td th:text="${ses.items}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript"  src="/js/jquery-2.2.4.min.js" ></script>
+
+
+
+</body>
+</html>

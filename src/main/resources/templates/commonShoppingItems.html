@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Java Session Store</a>
+</nav>
+
+<main role="main" class="container">
+
+    <br/>
+    <br/>
+    <h1>Most Common Items in Shopping Carts in Session Storage (by total quantity):</h1><br>
+    <a href="/"><-- Back to main page</a><br>
+    <br/>
+
+    <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Total Quantity</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.count}"></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript"  src="/js/jquery-2.2.4.min.js" ></script>
+
+
+
+</body>
+</html>

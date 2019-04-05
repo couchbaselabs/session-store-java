@@ -2,6 +2,8 @@ package com.cb.sessionstore.controller;
 
 
 import com.cb.sessionstore.model.Foo;
+import com.cb.sessionstore.model.vo.ProductCount;
+import com.cb.sessionstore.model.vo.SessionDoc;
 import com.cb.sessionstore.service.SessionService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -102,6 +103,20 @@ public class MainController {
 
 
 
+    @GetMapping("/ReportRecentShoppingCarts")
+    public String recentShopingCarts( Model model, HttpSession session) throws Exception {
+        List<SessionDoc> sessions = sessionService.list10MostRecent();
+        model.addAttribute("sessions", sessions);
+        return "recentShoppingCarts";
+    }
+
+    @GetMapping("/ReportMostCommonShoppingCartItems")
+    public String commonShoppingItems( Model model, HttpSession session) throws Exception {
+        List<ProductCount> items = sessionService.listMostCommonProducts();
+        model.addAttribute("products", items);
+        return "commonShoppingItems";
+    }
+
 
     private String defaultPage(Model model,  HttpSession session) throws Exception {
         ObjectMapper mapper = new ObjectMapper();
@@ -117,8 +132,6 @@ public class MainController {
 
     private SessionCart getSessionCart(HttpSession session) throws IOException {
         if(session.getAttribute(SESSION_CART) != null) {
-            System.out.println("==========================================");
-            System.out.println(session.getAttribute(SESSION_CART).toString());
             return mapper.readValue( session.getAttribute(SESSION_CART).toString(), SessionCart.class);
         } else {
             return new SessionCart();
@@ -126,7 +139,6 @@ public class MainController {
     }
 
     private void putSessionCart(SessionCart cart, HttpSession session) throws JsonProcessingException {
-        System.out.println(">>>>>>>>>"+mapper.writeValueAsString(cart));
         session.setAttribute(SESSION_CART, mapper.writeValueAsString(cart));
     }
 
