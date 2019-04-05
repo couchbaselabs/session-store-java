@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+
+
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Java Session Store</a>
+</nav>
+
+<main role="main" class="container">
+
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Welcome to the Couchbase Java Session Tutorial Example app.</h1>
+            <br>
+            The current data in the session is:
+            <pre id="json-display"></pre>
+        </div>
+    </div>
+    <h3><a href="/newSession">Start a new session</a></h3>
+    <div class="row">
+        <div class="col-md-3">
+            <h2>User</h2>
+            <ul>
+                <li><a href="/AddUserDataToSession">Add basic information to session</a></li>
+                <li><a href="/ClearUserDataInSession">Clear</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Shopping Cart</h2>
+            <ul>
+                <li><a href="/AddShoppingCartDataToSession">Add shopping cart to session</a></li>
+                <li><a href="/ClearShoppingCartDataInSession">Clear</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Location</h2>
+            <ul>
+                <li><a href="/AddLocationDataToSession">Add location information to session</a></li>
+                <li><a href="/ClearLocationDataInSession">Clear</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <h2>Reporting w/N1QL</h2>
+            <ul>
+                <li>Currently <strong><span th:text="${sessionCount}"></span></strong> session documents in storage.</li>
+                <li>To create more sessions, click "Start a new session" and then any of the "Add" links</li>
+                <li><a href="/AddLocationDataToSession">Recent shopping carts</a></li>
+                <li><a href="/ClearLocationDataInSession">Most common shopping cart items</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+
+</main>
+<!-- /.container -->
+
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript"  src="/js/jquery-2.2.4.min.js" ></script>
+<script type="text/javascript"  src="/js/jquery.json-editor.min.js"></script>
+
+
+<script th:inline="javascript">
+/*<![CDATA[*/
+
+    $( document ).ready(function() {
+        editor = new JsonEditor('#json-display', JSON.parse(/*[[${jsonSessionCart}]]*/));
+    });
+
+/*]]>*/
+</script>
+
+
+</body>
+</html>
