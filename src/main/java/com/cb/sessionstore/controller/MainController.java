@@ -34,7 +34,7 @@ public class MainController {
     }
 
     @GetMapping("/newSession")
-    public String mainWithParam(HttpServletRequest request, Model model) throws Exception {
+    public String newSession(HttpServletRequest request, Model model) throws Exception {
 
         request.getSession().invalidate();
         HttpSession newSession = request.getSession();
