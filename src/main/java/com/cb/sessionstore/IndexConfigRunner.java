@@ -12,8 +12,6 @@ import static org.springframework.session.data.couchbase.config.annotation.web.h
 
 @Component
 public class IndexConfigRunner implements CommandLineRunner {
-
-
     @Autowired
     private Bucket bucket;
 
