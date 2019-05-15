@@ -5,7 +5,7 @@ Example of how to build a session store with Couchbase using spring-session-couc
 
 The *spring-session-data-couchbase* dependency is not released yet, so you will need to checkout this project https://github.com/couchbaselabs/spring-session-data-couchbase and build it locally first.
 
-Then, you will need to configure the database connection in the *application.properties* file:
+All you need is to configure the database connection in the *application.properties* file:
 
 	
 ~~~~
